@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>내 정보</title>    
+{% endblock %}
+
+{% block content %}
+    <section id="seeProfile"  class="bgsection bg-white">
+        <div class="seeProfile__background">
+            
+            <div class="seeProfile__content">
+                <div class="content__title">
+                    <p id="nickname">{{user.nickname}}님의 프로필</p>
+                </div>
+                <table class="customer_table">
+                    <tr>
+                        <th class="type">별명</th>
+                        <td class="content">{{user.nickname}}</td>
+                    </tr>
+                    <tr>
+                        <th class="type">성별</th>
+                        <td class="content">
+                            {% if user.gender == 1 %} 여자
+                            {% elif user.gender == 0 %} 남자
+                            {%endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="type">이메일</th>
+                        <td class="content">{{ user.email }}</td>
+                    </tr>
+                    
+                </table>
+                <div class="profilebtns">
+                    <a class="btn btn-success" id="profilebtn1" href="{% url 'users:editProfile' %}">프로필 편집</a>
+                    <a class="btn btn-success" id="profilebtn2" href="{% url 'users:editPassword'%}">비밀번호 변경</a>
+            
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

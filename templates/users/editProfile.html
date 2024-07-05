@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>내 정보 수정</title>    
+{% endblock %}
+
+{% block content %}
+<section class="bgsection bg-white">
+    <section id="seeProfile">
+        <div class="seeProfile__background">
+            <div class="seeProfile__content">
+                <div class="content__title">
+                    <p id="nickname">{{user.nickname}}님의 프로필 수정</p>
+                </div>
+                <form action="{% url 'users:editProfile' %}" method="post">
+                    {% csrf_token %}
+                    <table class="customer_table">
+                        <tr>
+                            <th class="type">별명</th>
+                            <td class="content">{{ form.nickname }}</td>
+                        </tr>
+                        <tr>
+                            <th class="type">성별</th>
+                            <td class="content">{{ form.gender }}</td>
+                        </tr>
+                        <tr>
+                            <th class="type">이메일</th>
+                            <td class="content">{{ form.email }}</td>
+                        </tr>
+                    </table>
+                    <div class="editProfile">
+                        <a class="btn btn-success cancelBtn" href="{% url 'users:profile' user.id %}">취소</a>
+                        <button class="btn btn-success cancelBtn">완료</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</section>
+{% endblock %}
